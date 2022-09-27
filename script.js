@@ -19,13 +19,20 @@ function ClickEventHandler() {
     {
         var inputText=txtInput.value;
 
-        fetch(getTranslationURL(inputText))
-        .then(response=>response.json())
-        .then(json=>{
-            var translatedText=json.contents.translated;
-            outputDiv.innerText=translatedText;
-            })
-        .catch(errorHandler)
+        if(inputText===""){
+            outputDiv.innerText=`Please enter some text!`;
+        }
+
+        else{
+            fetch(getTranslationURL(inputText))
+            .then(response=>response.json())
+            .then(json=>{
+                var translatedText=json.contents.translated;
+                outputDiv.innerText=translatedText;
+                })
+            .catch(errorHandler)
+        }
+
     };
 }
 
